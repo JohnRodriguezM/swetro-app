@@ -1,0 +1,10 @@
+{
+  "name": "utils",
+  "version": "0.0.1",
+  "main": "src/index.py",
+  "scripts": {
+    "start": "python src/index.py"
+  },
+  "dependencies": {
+  }
+}

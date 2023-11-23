@@ -1,0 +1,11 @@
+{
+  "name": "swetro",
+  "private": true,
+  "workspaces": [
+    "project/*"
+  ],
+  "dependencies": {},
+  "devDependencies": {
+    "lerna": "^7.4.2"
+  }
+}
