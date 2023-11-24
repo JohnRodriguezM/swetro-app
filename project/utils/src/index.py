@@ -34,14 +34,25 @@ if __name__ == "__main__":
 """
 
 
+import sys
 from pathlib import Path
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
-import sys
 import base64
 from io import BytesIO
 import json
+
+# Obtén los parámetros de la página y el límite de los argumentos de la línea de comandos
+try:
+    page = int(sys.argv[1])
+    limit = int(sys.argv[2])
+except IndexError:
+    page = 1
+    limit = 10
+
+# Calcula el offset
+offset = (page - 1) * limit
 
 # Obtener la ruta del directorio actual
 dir_path = Path(__file__).parent
@@ -63,11 +74,11 @@ std = datos.std()
 datos['Suma_Desviaciones'] = ((datos - mean) / std).sum(axis=1)
 
 # Definir las actividades sospechosas
-umbral = 5 # ajusta este valor según tus expectativas
+umbral = 50 # ajusta este valor según tus expectativas
 datos['Sospechosa'] = datos['Suma_Desviaciones'] > umbral
 
-# Filtrar las actividades sospechosas
-actividades_sospechosas = datos[datos['Sospechosa']]
+# Filtrar las actividades sospechosas y aplicar la paginación
+actividades_sospechosas = datos[datos['Sospechosa']].iloc[offset:offset+limit]
 
 # Crear una figura y un eje
 fig, ax = plt.subplots()
@@ -93,13 +104,33 @@ image_data_url = 'data:image/png;base64,' + image_base64
 # Convertir el DataFrame a JSON
 data_json = actividades_sospechosas[['Id', 'Sospechosa', 'Suma_Desviaciones']].to_json(orient='records')
 
-# Imprimir el JSON y la imagen en base64
-print(json.dumps({'data': data_json, 'image': image_data_url}))
+
+# Crear un diccionario con los resultados
+result = {
+    'data': data_json,
+    'image': image_data_url
+}
+
+# Convertir el diccionario a una cadena JSON
+result_json = json.dumps(result)
+print(result_json)
 
 # Imprimir el número de actividades sospechosas a stderr
 sys.stderr.write(f"Número de actividades sospechosas: {len(actividades_sospechosas)}\n")
-"""# Crear una figura y un eje
-fig, ax = plt.subplots()
+
+
+
+
+
+
+
+
+# Imprimir el JSON y la imagen en base64
+# print(json.dumps({'data': data_json, 'image': image_data_url}))
+
+
+# Crear una figura y un eje
+"""fig, ax = plt.subplots()
 
 # Crear un gráfico de dispersión con los ID y los valores de 'Suma_Desviaciones' de las actividades sospechosas
 ax.scatter(actividades_sospechosas['Id'], actividades_sospechosas['Suma_Desviaciones'])
