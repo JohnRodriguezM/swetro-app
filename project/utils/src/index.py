@@ -13,7 +13,7 @@ except IndexError:
 
 offset = (page - 1) * limit
 file_path = Path(__file__).parent / 'swetroDeveloperTest.csv'
-threshold = 50
+threshold = 3
 
 data = load_data(file_path)
 processed_data = process_data(data, threshold)

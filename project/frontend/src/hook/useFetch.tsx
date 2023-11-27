@@ -9,7 +9,7 @@ const useFetch = (
     limit: number;
   }
 ): {
-  data: { image: string; data: DataType[] },
+  data: { image: string; data: DataType[] };
   isLoading: boolean;
   error: unknown;
 } => {
@@ -34,6 +34,7 @@ const useFetch = (
       }
     };
     fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [params.page]);
 
   return { data, isLoading, error };

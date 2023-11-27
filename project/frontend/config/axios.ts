@@ -1,7 +1,7 @@
 // eslint-disable-next-line @typescript-eslint/naming-convention
 import axios from "axios";
 
-const baseURL = "http://localhost:3000/";
+const baseURL = "http://localhost:3000/api/";
 
 export const api = axios.create({
   baseURL,
