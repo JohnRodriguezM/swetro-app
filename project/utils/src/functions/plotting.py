@@ -3,6 +3,15 @@ import base64
 from io import BytesIO
 
 def create_plot(df):
+  """
+  Create a scatter plot of the given DataFrame.
+
+  Parameters:
+  df (pandas.DataFrame): The DataFrame containing the data to be plotted.
+
+  Returns:
+  str: The base64 encoded image of the scatter plot.
+  """
   fig, ax = plt.subplots()
   ax.scatter(df['Id'], df['Suma_Desviaciones'])
   ax.set_xlabel('ID')

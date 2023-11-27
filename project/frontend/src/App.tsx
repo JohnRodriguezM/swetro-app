@@ -13,6 +13,13 @@ const App: React.FC = (): JSX.Element => {
 
   const limit = 10;
 
+  /**
+   * Fetches suspicious activities data.
+   *
+   * @param {number} page - The page number.
+   * @param {number} limit - The maximum number of items per page.
+   * @returns {object} - The fetched data and loading status.
+   */
   const { data, isLoading } = useFetch("suspicious_activities", {
     page: page,
     limit,

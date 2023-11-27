@@ -1,5 +1,9 @@
 import { ThreeDots } from "react-loader-spinner";
-
+/**
+ * Loader component that displays a loading spinner and a text message.
+ *
+ * @returns The Loader component.
+ */
 export const Loader: React.FC = (): JSX.Element => {
   return (
     <section

@@ -3,6 +3,10 @@ require("dotenv").config();
 const express = require("express");
 const morgan = require("morgan");
 const cors = require("cors");
+/**
+ * Express router for handling suspicious activities routes.
+ * @type {object}
+ */
 const router = require("./routes/suspicious_activities.routes");
 
 const app = express();

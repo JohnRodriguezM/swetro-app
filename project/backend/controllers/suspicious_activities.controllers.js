@@ -1,5 +1,9 @@
 const { spawn } = require("child_process");
 const path = require("path");
+/**
+ * Controller file for handling suspicious activities.
+ * @module suspicious_activities.controllers
+ */
 const {
   HTTP_STATUS_SERVER_ERROR,
   ERROR_RUNNING_SCRIPT,
@@ -8,6 +12,10 @@ const {
 
 module.exports.getSuspiciousActivities = async (req, res) => {
   const { page = 1, limit = 10 } = req.query;
+  /**
+   * The path to the Python script file.
+   * @type {string}
+   */
   const pythonScriptPath = path.join(__dirname, "../../utils/src/index.py");
   const python = spawn("python", [pythonScriptPath, page, limit]);
 

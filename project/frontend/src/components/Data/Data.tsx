@@ -1,5 +1,14 @@
 import { DataType } from "../../types/app.types";
 
+/**
+ * Renders a component that displays data in a table format.
+ * @param props - The props for the Data component.
+ * @param props.image - The image source for the component.
+ * @param props.data - An array of data to be displayed in the table.
+ * @param props.page - The current page number.
+ * @param props.setState - A function to update the state of the component.
+ * @returns The JSX element representing the Data component.
+ */
 export const Data = (props: {
   image: string;
   data: DataType[];
@@ -10,6 +19,9 @@ export const Data = (props: {
     }>
   >;
 }): JSX.Element => {
+  /**
+   * Props for the Data component.
+   */
   const { image, data, page, setState } = props;
 
   return (

@@ -2,6 +2,13 @@ import { useState, useEffect } from "react";
 import { api } from "./../../config/axios";
 import { DataType } from "../types/app.types";
 
+/**
+ * Custom hook for fetching data from a specified URL with pagination parameters.
+ *
+ * @param url - The URL to fetch data from.
+ * @param params - The pagination parameters (page and limit).
+ * @returns An object containing the fetched data, loading state, and error.
+ */
 const useFetch = (
   url: string,
   params: {
