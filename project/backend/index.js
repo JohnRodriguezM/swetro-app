@@ -38,6 +38,7 @@ app.get("/suspicious_activities", (req, res) => {
     }
     const parsedResult = JSON.parse(result);
     res.json({
+      totalData: JSON.parse(parsedResult.data).length,
       data: JSON.parse(parsedResult.data),
       image: parsedResult.image,
     });
